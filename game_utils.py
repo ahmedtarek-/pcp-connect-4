@@ -21,11 +21,17 @@ PLAYER2_PRINT = BoardPiecePrint('O')
 PlayerAction = np.int8  # The column to be played
 
 class GameState(Enum):
+    """
+    An enum representing whether a game is won, draw or still going.
+    """
     IS_WIN = 1
     IS_DRAW = -1
     STILL_PLAYING = 0
 
 class MoveStatus(Enum):
+    """
+    An enum to represent possible different cases for user input.
+    """
     IS_VALID = 1
     WRONG_TYPE = 'Input is not a number.'
     NOT_INTEGER = ('Input is not an integer, or isn\'t equal to an integer in '
@@ -93,7 +99,7 @@ def pretty_print_board(board: np.ndarray) -> str:
     # Adding |==============|
     str_to_print = separator 
     
-    # Adding the inverted rows
+    # Adding the inverted rows (to make it start at bottom)
     for row in board_rows[::-1]:
         str_to_print += row
 
@@ -104,15 +110,6 @@ def pretty_print_board(board: np.ndarray) -> str:
     str_to_print += end_str
 
     return str_to_print
-
-
-def string_to_board(pp_board: str) -> np.ndarray:
-    """
-    Takes the output of pretty_print_board and turns it back into an ndarray.
-    This is quite useful for debugging, when the agent crashed and you have the last
-    board state as a string.
-    """
-    raise NotImplementedError()
 
 
 def apply_player_action(board: np.ndarray, action: PlayerAction, player: BoardPiece):
@@ -177,7 +174,7 @@ def check_end_state(board: np.ndarray, player: BoardPiece) -> GameState:
 
 def valid_columns(board: np.ndarray) -> np.ndarray:
     """
-    Returns the valid columns for a given board
+    Returns the valid columns for a given board. A beautiful one-liner using numpy.
     """
     valid_columns = np.where(~board.all(axis=0))[0]
     return valid_columns

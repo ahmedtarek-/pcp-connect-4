@@ -6,7 +6,9 @@ from typing import Optional, Callable
 def generate_move_random(
     board: np.ndarray, player: BoardPiece, saved_state: Optional[SavedState]
 ) -> tuple[PlayerAction, Optional[SavedState]]:
-    # Choose a valid, non-full column randomly and return it as `action`
+    """
+    Returns a valid, non-full column randomly and return it as action
+    """
     
     # 1. Get all columns where action is possible
     valid_columns = valid_columns()
