@@ -2,11 +2,12 @@ from typing import Callable
 from game_utils import GenMove
 from agents.agent_human_user import user_move as human_user_move
 from agents.agent_random import generate_move as random_user_move
+from agents.agent_minimax import generate_move_minmax as minmax_user_move
 
 
 def human_vs_agent(
     generate_move_1: GenMove,
-    generate_move_2: GenMove = random_user_move,
+    generate_move_2: GenMove = minmax_user_move,
     player_1: str = "Player 1",
     player_2: str = "Player 2",
     args_1: tuple = (),

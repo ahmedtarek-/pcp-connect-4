@@ -175,6 +175,13 @@ def check_end_state(board: np.ndarray, player: BoardPiece) -> GameState:
     return verdict
 
 
+def valid_columns(board: np.ndarray) -> np.ndarray:
+    """
+    Returns the valid columns for a given board
+    """
+    valid_columns = np.where(~board.all(axis=0))[0]
+    return valid_columns
+
 def check_move_status(board: np.ndarray, column: float) -> MoveStatus:
     """
     Returns a MoveStatus indicating whether a move is legal or illegal, and why 

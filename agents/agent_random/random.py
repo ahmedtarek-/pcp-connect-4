@@ -1,6 +1,6 @@
 import numpy as np
 
-from game_utils import BoardPiece, PlayerAction, SavedState, NO_PLAYER
+from game_utils import BoardPiece, PlayerAction, SavedState, NO_PLAYER, valid_columns
 from typing import Optional, Callable
 
 def generate_move_random(
@@ -9,7 +9,7 @@ def generate_move_random(
     # Choose a valid, non-full column randomly and return it as `action`
     
     # 1. Get all columns where action is possible
-    valid_columns = np.where(~board.all(axis=0))[0]
+    valid_columns = valid_columns()
 
     # 2. Select one randomly
     random_action = np.random.choice(valid_columns, size=1)[0]
